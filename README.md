@@ -5,7 +5,7 @@ Repository for Semcon AI TUG sessions
 This section describes needed packages/tools for the repository.
 
 ### Python 3.6
-Ensure that you have __Python 3.6__ installed on you pc.
+Ensure that you have __Python 3.6__ installed on your laptop.
 
 ### Tox
 Ensure that you have __tox__ package installed. 
