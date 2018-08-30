@@ -10,6 +10,9 @@ Ensure that you have __Python 3.6__ installed on your laptop. You can check you 
 python3 -v
 ```
 
+If you do not have it, then here is a link that might help you install python 3.6:
+[Install instructions for Python 3.x](https://realpython.com/installing-python/)
+
 ### Tox
 Ensure that you have __tox__ package installed. 
 ```
