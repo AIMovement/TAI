@@ -18,6 +18,7 @@ python3 -v
 ```
 
 If you do not have it, then here is a link that might help you install python 3.6:
+
 [Install instructions for Python 3.x](https://realpython.com/installing-python/)
 
 ### Tox
