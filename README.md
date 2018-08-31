@@ -12,7 +12,7 @@ recommended. It includes a small Linux-like environment based on
 
 
 ### Python 3.6
-Ensure that you have __Python 3.6__ installed on your laptop. You can check you python 3.x verion by:
+Ensure that you have __Python 3.6__ installed on your laptop. You can check you python 3.x version by:
 ```
 python3 -v
 ```
