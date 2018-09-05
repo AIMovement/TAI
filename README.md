@@ -27,3 +27,13 @@ Ensure that you have __tox__ package installed.
 pip3 install tox
 ```
 Tox [docs](https://tox.readthedocs.io/en/latest/).
+
+### Voice recording using sox & rec
+´´´
+rec -r 16000 -c 1 test1.wav silence 1 0.1 3% 1 3.0 3%
+´´´
+This command is executed on the command line using python [subprocess](https://docs.python.org/3/library/subprocess.html)
+´´´
+p = subprocess.Popen(["rec", "test.wav", "-c", "1", "-r", "16000", "silence", "1", "0.1", "3%", "1", "3.0", "3%"],stdout=subprocess.PIPE)
+´´´
+The recording automatically stops when detects a silence of 3 secs. Source [stackoverflow](https://unix.stackexchange.com/questions/55032/end-sox-recording-once-silence-is-detected/57593).
