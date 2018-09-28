@@ -26,9 +26,9 @@ subprocess.call(["aplay", WAVE_FILE_NAME])
 # Send file to ML-Comp: 
 server = '192.168.229.121'
 port = 22
-user = 'scj'
+user = 'mllaptop'
 seva_url = 'http://192.168.229.121:8000/seva'
-remote_path = "/home/TAI/tai_brain/taiserver"
+remote_path = "/home/mllaptop/TAI/tai_brain/taiserver"
 key_file_location = "/home/pi/.ssh/id_rsa"
 with open(key_file_location, 'r') as keyfile:
    pk = paramiko.RSAKey.from_private_key(keyfile)
