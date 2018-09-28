@@ -24,9 +24,11 @@ subprocess.call(["aplay", WAVE_FILE_NAME])
 
 
 # Send file to ML-Comp: 
-server = '192.168.229.120'
+server = '192.168.229.121'
 port = 22
 user = 'scj'
+seva_url = 'http://192.168.229.121:8000/seva'
+remote_path = "/home/TAI/tai_brain/taiserver"
 key_file_location = "/home/pi/.ssh/id_rsa"
 with open(key_file_location, 'r') as keyfile:
    pk = paramiko.RSAKey.from_private_key(keyfile)
@@ -36,12 +38,11 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(hostname=server,username=user,pkey=pk)
 
 with SCPClient(ssh.get_transport()) as scp:
-    scp.put(WAVE_FILE_NAME, WAVE_FILE_NAME) # Copy my_file.txt to the server
+    scp.put(WAVE_FILE_NAME, remote_path) # Copy my_file.txt to the server
     
 ssh.close()
 
-server_url = 'http://192.168.229.120:8000/seva'
-r = requests.get(url = server_url)
+r = requests.get(url = seva_url)
 
 seva_ack = r.text
 print(seva_ack)
