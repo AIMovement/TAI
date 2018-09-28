@@ -1,8 +1,19 @@
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import paramiko
 from scp import SCPClient
 import subprocess
 import sox
 import wave
+
+import urllib.request
+
+import urllib.parse
+
+import requests
+import json
 
 
 WAVE_FILE_NAME = "test1.wav"
@@ -13,19 +24,25 @@ subprocess.call(["aplay", WAVE_FILE_NAME])
 
 
 # Send file to ML-Comp: 
-server = '192.168.229.92'
-port = 22 
-user = 'mllaptop'
-password = 'Semcon196' 
-
-def createSSHClient(server, port, user, password):
-	client = paramiko.SSHClient()
-	client.load_system_host_keys()
-	client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-	client.connect(server, port, user, password)
-	return client
-	
-ssh = createSSHClient(server, port, user, password)
+server = '192.168.229.120'
+port = 22
+user = 'scj'
+key_file_location = "/home/pi/.ssh/id_rsa"
+with open(key_file_location, 'r') as keyfile:
+   pk = paramiko.RSAKey.from_private_key(keyfile)
+    
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect(hostname=server,username=user,pkey=pk)
 
 with SCPClient(ssh.get_transport()) as scp:
-	scp.put(WAVE_FILE_NAME, WAVE_FILE_NAME) # Copy my_file.txt to the server
+    scp.put(WAVE_FILE_NAME, WAVE_FILE_NAME) # Copy my_file.txt to the server
+    
+ssh.close()
+
+server_url = 'http://192.168.229.120:8000/seva'
+r = requests.get(url = server_url)
+
+seva_ack = r.text
+print(seva_ack)
+
